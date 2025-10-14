@@ -22,7 +22,14 @@
             box-sizing: border-box;
             font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
         }
-        
+        html {
+            scroll-behavior: smooth;
+        }
+        ul {
+            list-style: none; /* убирает точки */
+            padding: 0;       /* убирает отступ слева */
+            margin: 0;        /* убирает внешний отступ, если нужно */
+        }
         body {
             color: var(--dark-color);
             line-height: 1.5;
