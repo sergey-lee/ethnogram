@@ -2,7 +2,7 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["TEAMID.com.alienminds.ethnogram"],
+        "appIDs": ["4GZ4AH8Z6M.co.alienminds.ethnogram"],
         "paths": [ "/post/*", "/profile/*", "/event/*", "/" ]
       }
     ]
