@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirect</title>
+  <script>
+    window.onload = function () {
+      const ua = navigator.userAgent.toLowerCase();
+      if (ua.includes("android")) {// Android → Google Play
+        window.location.href = "https://play.google.com/store/apps/details?id=net.alienminds.ethnogram";
+      } else if (ua.includes("iphone") || ua.includes("ipad")) {// iOS → App Store
+        window.location.href = "https://apps.apple.com/tm/app/ethnogram/id6475088474";
+      } else {// fallback
+        window.location.href = "https://ethnogram.alienminds.net/";
+      }
+    };
+  </script>
+</head>
+<body>
+  Redirecting...
+</body>
+</html>
