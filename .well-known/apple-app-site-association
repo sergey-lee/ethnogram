@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appIDs": ["4GZ4AH8Z6M.co.alienminds.ethnogram"],
+        "appID": "4GZ4AH8Z6M.co.alienminds.ethnogram",
         "paths": [ "/post/*", "/profile/*", "/event/*", "/" ]
       }
     ]
