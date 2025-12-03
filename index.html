@@ -6,23 +6,59 @@
     <title>Ethnogram - Найди своих в Корее</title>
 
     <script>
-    // Если путь начинается с /contact - пытаемся открыть приложение
-        const path = window.location.pathname;
+    const path = window.location.pathname;
     
-        if (path.startsWith('/contact/')) {
-            const contactId = path.split('/')[2];
+    // Определяем платформу
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+    const isDesktop = !isIOS && !isAndroid;
+    
+    if (path.startsWith('/contact/')) {
+        const contactId = path.split('/')[2];
         
-            if (contactId) {
-            // Пытаемся открыть приложение
+        if (contactId) {
+            if (isDesktop) {
+                // На десктопе просто редиректим на главную
+                console.log('Desktop detected, redirecting to home');
+                window.location.href = '/';
+                
+            } else if (isIOS) {
+                // На iOS пытаемся открыть приложение
+                console.log('iOS detected, trying to open app');
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    background: #007AFF;
+                    color: white;
+                    padding: 15px;
+                    text-align: center;
+                    font-family: -apple-system;
+                    z-index: 9999;
+                `;
+                messageDiv.textContent = 'Открываем Ethnogram...';
+                document.body.insertBefore(messageDiv, document.body.firstChild);
+                
+                // Пытаемся открыть приложение
                 window.location.href = `ethnogram://contact/${contactId}`;
-            
-            // Через 1.5 секунды показываем начальную страницу
+                
+                // Через 2 секунды возвращаем на главную
                 setTimeout(() => {
+                    messageDiv.remove();
                     window.history.replaceState(null, '', '/');
-                }, 1500);
+                }, 2000);
+                
+            } else if (isAndroid) {
+                // На Android тоже на главную (пока нет Android версии)
+                console.log('Android detected, redirecting to home');
+                window.location.href = '/';
             }
         }
-    </script>
+    }
+</script>
     
     <style>
         :root {
