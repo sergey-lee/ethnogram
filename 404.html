@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethnogram - Redirecting...</title>
+    <script>
+    (function() {
+        const path = window.location.pathname;
+        const isMobile = /iPad|iPhone|iPod|Android/.test(navigator.userAgent);
+        
+        console.log('404 handler - Path:', path);
+        console.log('404 handler - Is Mobile:', isMobile);
+        
+        if (path.startsWith('/contact/')) {
+            const contactId = path.split('/').filter(p => p)[1];
+            
+            console.log('404 handler - Contact ID:', contactId);
+            
+            if (contactId && isMobile) {
+                // Открываем приложение на мобильных
+                const deepLink = 'ethnogram://contact/' + contactId;
+                console.log('404 handler - Opening app:', deepLink);
+                window.location.href = deepLink;
+                
+                // Через 1.5 секунды редирект на главную
+                setTimeout(function() {
+                    console.log('404 handler - Timeout redirect to home');
+                    window.location.replace('/');
+                }, 1500);
+            } else {
+                // Desktop или нет ID - сразу на главную
+                console.log('404 handler - Desktop redirect to home');
+                window.location.replace('/');
+            }
+        } else {
+            // Другие 404 - на главную
+            console.log('404 handler - Other 404, redirect to home');
+            window.location.replace('/');
+        }
+    })();
+    </script>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+             text-align: center; padding: 50px; background: #f5f5f5;">
+    <div style="max-width: 400px; margin: 0 auto; background: white; 
+                padding: 40px; border-radius: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <h2 style="margin: 0 0 15px 0; color: #333;">📱 Ethnogram</h2>
+        <p style="color: #666; margin: 0;">Перенаправление...</p>
+    </div>
+</body>
+</html>
