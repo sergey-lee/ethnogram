@@ -4,41 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ethnogram - Найди своих в Корее</title>
-
-    <script>
-    (function() {
-        const path = window.location.pathname;
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        
-        console.log('Path:', path);
-        console.log('Is iOS:', isIOS);
-        
-        if (path.startsWith('/contact/')) {
-            const parts = path.split('/').filter(p => p);
-            const contactId = parts[1]; // parts = ['contact', 'contactId']
-            
-            console.log('Contact ID:', contactId);
-            
-            if (contactId && isIOS) {
-                // На iOS открываем приложение
-                const deepLink = 'ethnogram://contact/' + contactId;
-                console.log('Opening:', deepLink);
-                window.location.href = deepLink;
-                
-                // Через 1.5 секунды если все еще на странице - редирект
-                setTimeout(function() {
-                    console.log('Timeout - redirecting to home');
-                    window.location.replace('/');
-                }, 1500);
-            } else {
-                // Не iOS или нет ID - на главную
-                console.log('Not iOS or no ID - redirecting to home');
-                window.location.replace('/');
-            }
-        }
-    })();
-    </script>
-    
     <style>
         :root {
             --primary-color: #0A84FF;
