@@ -477,7 +477,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            /* min-height: 100vh; */
             font-size: 17px;
             color: #8E8E93;
         }
@@ -514,8 +514,9 @@
 
 
     <!-- Loading -->
-    <div id="loading" class="loading">
-        <div>Загрузка...</div>
+  
+    <div id="loading" class="loading" style="height: 1px">
+        <!-- <div>Загрузка...</div> -->
     </div>
 
     <!-- Profile Container -->
@@ -655,13 +656,6 @@
         };
 
         async function loadContact() {
-        const timeoutId = setTimeout(() => {
-        console.log('⏱️ Timeout - showing demo data');
-        showDemoData();
-        document.getElementById('loading').classList.add('hidden');
-        document.getElementById('profileContainer').classList.remove('hidden');
-    }, 5000);
-
             try {
                 // Вызываем публичную Cloud Function с POST методом
                 const response = await fetch(CLOUD_FUNCTION_URL, {
@@ -690,15 +684,12 @@
                     showDemoData();
                 }
             } catch (error) {
-                 clearTimeout(timeoutId);
-        console.error('Error:', error);
-        showDemoData();
-            } finally {
-                 
+                console.error('Error loading contact:', error);
+                showDemoData();
+            }
 
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('profileContainer').classList.remove('hidden');
-            }
         }
 
         function renderContact(data) {
