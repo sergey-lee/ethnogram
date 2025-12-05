@@ -729,7 +729,8 @@
             }
 
             // Location
-            const cities = data.cities?.map(id => citiesMap[id] || cities[id]).join(', ');
+            const cities = data.cities?.map(id => citiesMap[id] || ` ${cities[id]}`).join(', ');
+            // const cities = data.cities?.map(id => citiesMap[id] || cities[id]).join(', ');
             if (cities) {
                 document.getElementById('profileLocation').textContent = cities;
             }
