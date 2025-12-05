@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль - Ethnogram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: #F5F5F5;
+            color: #000000;
+            line-height: 1.5;
+        }
+
+        /* Banner */
+        .app-banner {
+            background: #E8E8E8;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .banner-text {
+            font-size: 14px;
+            color: #333333;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .store-btn {
+            height: 44px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .store-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Profile Container */
+        .profile-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            background: #2D2D2D;
+            padding: 30px 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 280px;
+            height: 280px;
+            border-radius: 24px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        /* Profile Info */
+        .profile-info {
+            background: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .name-location {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        .profile-location {
+            font-size: 16px;
+            color: #8E8E93;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 26px;
+            background: #34C759;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            box-shadow: 0 2px 8px rgba(52, 199, 89, 0.3);
+        }
+
+        .action-btn:active {
+            transform: scale(0.95);
+            opacity: 0.8;
+        }
+
+        /* Tags */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            padding: 10px 18px;
+            background: #F5F5F5;
+            border-radius: 20px;
+            font-size: 15px;
+            color: #000000;
+        }
+
+        /* Description */
+        .short-description {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 25px;
+        }
+
+        /* About Section */
+        .about-section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .about-text {
+            font-size: 16px;
+            color: #333333;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .collapse-btn {
+            color: #007AFF;
+            font-size: 16px;
+            cursor: pointer;
+            float: right;
+            margin-top: 10px;
+        }
+
+        .about-text.collapsed {
+            max-height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .about-text.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, white);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            margin-bottom: 25px;
+        }
+
+        .contact-line {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 8px;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .social-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #F9F9F9;
+            border-radius: 16px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .social-card:active {
+            background: #F0F0F0;
+        }
+
+        .social-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 28px;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .social-icon-wrapper.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .social-icon-wrapper.telegram {
+            background: #0088cc;
+        }
+
+        .social-icon-wrapper.whatsapp {
+            background: #25d366;
+        }
+
+        .social-icon-wrapper.kakao {
+            background: #fee500;
+        }
+
+        .social-icon-wrapper.youtube {
+            background: #ff0000;
+        }
+
+        .social-icon-wrapper.facebook {
+            background: #1877f2;
+        }
+
+        .social-icon-wrapper.tiktok {
+            background: #000000;
+        }
+
+        .social-icon-wrapper.linkedin {
+            background: #0077b5;
+        }
+
+        .social-icon-wrapper.twitter {
+            background: #1da1f2;
+        }
+
+        .social-icon-wrapper img {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) invert(1);
+        }
+
+        .social-info {
+            flex: 1;
+        }
+
+        .social-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 2px;
+        }
+
+        .social-handle {
+            font-size: 15px;
+            color: #8E8E93;
+        }
+
+        /* Rating Section */
+        .rating-section {
+            padding: 20px 0;
+            border-top: 1px solid #E8E8E8;
+        }
+
+        .rating-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .rating-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .rating-count {
+            font-size: 15px;
+            color: #8E8E93;
+        }
+
+        .no-reviews {
+            font-size: 16px;
+            color: #A855F7;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .star {
+            font-size: 24px;
+            color: #FFD700;
+        }
+
+        .star.empty {
+            color: #E8E8E8;
+        }
+
+        .rating-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        /* Gallery */
+        .gallery-section {
+            margin: 25px 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.2s;
+        }
+
+        .gallery-item:active img {
+            transform: scale(1.05);
+        }
+
+        /* Map Section */
+        .map-section {
+            margin: 25px 0;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #F5F5F5;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .map-placeholder:active {
+            background: #ECECEC;
+        }
+
+        .map-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .map-text {
+            font-size: 15px;
+            color: #8E8E93;
+        }
+
+        /* Bottom Padding */
+        .bottom-padding {
+            height: 40px;
+        }
+
+        /* Hidden */
+        .hidden {
+            display: none;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 12px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            color: #000000;
+        }
+
+        /* Loading */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-size: 17px;
+            color: #8E8E93;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .profile-image {
+                width: 240px;
+                height: 240px;
+            }
+
+            .profile-name {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- App Banner -->
+    <div class="app-banner">
+        <div class="banner-text">
+            Скачайте Ethnogram прямо сейчас и найдите<br>
+            нужных специалистов или предложите свои услуги
+        </div>
+        <div class="store-buttons">
+            <a href="https://apps.apple.com/app/ethnogram" target="_blank">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='135' height='40' viewBox='0 0 135 40'%3E%3Cg fill='none'%3E%3Crect width='135' height='40' fill='%23000' rx='5'/%3E%3Ctext x='48' y='25' fill='%23fff' font-family='SF Pro Display' font-size='13' font-weight='500'%3EЗагрузите в%3C/text%3E%3Ctext x='48' y='12' fill='%23fff' font-family='SF Pro Display' font-size='9'%3EДоступно в%3C/text%3E%3Ctext x='48' y='32' fill='%23fff' font-family='SF Pro Display' font-size='18' font-weight='600'%3EApp Store%3C/text%3E%3Cpath fill='%23fff' d='M25 10.5c-.7.8-1.8 1.4-2.9 1.3-.2-1.1.3-2.3 1-3 .7-.8 1.9-1.4 2.8-1.4.1 1.1-.2 2.2-1 3m1 1.6c-1.5-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.7 1.1 9 .7 1.1 1.6 2.4 2.8 2.4 1.1 0 1.5-.7 2.9-.7 1.4 0 1.7.7 2.9.7 1.2 0 2-1.2 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.7 0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8'/%3E%3C/g%3E%3C/svg%3E" alt="App Store" class="store-btn">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=net.alienminds.ethnogram" target="_blank">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='135' height='40' viewBox='0 0 135 40'%3E%3Cg fill='none'%3E%3Crect width='135' height='40' fill='%23000' rx='5'/%3E%3Ctext x='48' y='12' fill='%23fff' font-family='SF Pro Display' font-size='9'%3EДОСТУПНО В%3C/text%3E%3Ctext x='48' y='32' fill='%23fff' font-family='SF Pro Display' font-size='18' font-weight='600'%3EGoogle Play%3C/text%3E%3Cpath fill='%2341C0FD' d='M15 8l14 8-3.5 3.5L15 8z'/%3E%3Cpath fill='%23FFCE00' d='M25.5 19.5L29 16l-14-8 10.5 11.5z'/%3E%3Cpath fill='%23F43249' d='M15 32l14-8-3.5-4.5L15 32z'/%3E%3Cpath fill='%2366D366' d='M15 8v24L25.5 19.5 15 8z'/%3E%3C/g%3E%3C/svg%3E" alt="Google Play" class="store-btn">
+            </a>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading" class="loading">
+        <div>Загрузка...</div>
+    </div>
+
+    <!-- Profile Container -->
+    <div id="profileContainer" class="profile-container hidden">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <img id="profileImage" src="https://via.placeholder.com/280" alt="Profile" class="profile-image">
+        </div>
+
+        <!-- Profile Info -->
+        <div class="profile-info">
+            <div class="info-header">
+                <div class="name-location">
+                    <div class="profile-name" id="profileName">Ли Сергей</div>
+                    <div class="profile-location" id="profileLocation">Вся Корея</div>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-btn" onclick="callPhone()" title="Позвонить">📞</button>
+                    <button class="action-btn" onclick="openChat()" title="Написать">💬</button>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="tags-container" id="tagsContainer">
+                <div class="tag">Мобильная разработка</div>
+                <div class="tag">Веб-разработка</div>
+            </div>
+
+            <!-- Short Description -->
+            <div class="short-description" id="shortDescription">
+                Разработка мобильных и веб приложений любой сложности.
+            </div>
+
+            <!-- About Section -->
+            <div class="about-section">
+                <div class="section-title">О себе:</div>
+                <div class="about-text" id="aboutText">
+Привет! Я, Сергей, разработчик приложения Ethnogram. Надеюсь Вам нравится наше приложение и оно помогает Вам находить нужных Вам людей и места в несколько тапов!
+
+Если у Вас есть какие либо предложения или Вы столкнулись с проблемами используя приложение, пожалуйста, напишите мне в любом из нижеперечисленных мессенджеров.
+
+Ваши отзывы очень важны для улучшения платформы. Спасибо!
+
+По вопросам сотрудничества пишите в мой телеграм 👇
+                </div>
+                <span class="collapse-btn" id="collapseBtn" onclick="toggleAbout()">свернуть</span>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-links" id="socialLinks">
+                <a href="#" class="social-card" id="instagramCard">
+                    <div class="social-icon-wrapper instagram">
+                        <span style="font-size: 32px; color: white;">📷</span>
+                    </div>
+                    <div class="social-info">
+                        <div class="social-name">Instagram</div>
+                        <div class="social-handle" id="instagramHandle">@username</div>
+                    </div>
+                </a>
+
+                <a href="#" class="social-card" id="telegramCard">
+                    <div class="social-icon-wrapper telegram">
+                        <span style="font-size: 32px; color: white;">✈️</span>
+                    </div>
+                    <div class="social-info">
+                        <div class="social-name">Telegram</div>
+                        <div class="social-handle" id="telegramHandle">@username</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Gallery Section -->
+            <div class="gallery-section hidden" id="gallerySection">
+                <div class="section-title">Галерея</div>
+                <div class="gallery-grid" id="galleryGrid"></div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-section hidden" id="mapSection">
+                <div class="section-title">Местоположение</div>
+                <div class="map-placeholder" onclick="openMap()">
+                    <div class="map-icon">📍</div>
+                    <div class="map-text">Открыть на карте</div>
+                </div>
+            </div>
+
+            <!-- Rating Section -->
+            <div class="rating-section">
+                <div class="rating-header">
+                    <div class="rating-title">Рейтинг:</div>
+                    <div class="rating-count" id="ratingCount">(0 отзывов)</div>
+                </div>
+                <div id="ratingContent">
+                    <div class="no-reviews">Отзывов пока нет</div>
+                </div>
+            </div>
+
+            <div class="bottom-padding"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-close">×</div>
+        <img id="lightboxImage" src="" alt="">
+    </div>
+
+    <script>
+        const CLOUD_FUNCTION_URL = 'https://us-central1-ethnogram-1cd0f.cloudfunctions.net/getUserByUID';
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const contactId = urlParams.get('uid') || 'DEMO';
+
+        let contactData = null;
+
+        const categoriesMap = {
+            1: 'Строительство',
+            2: 'Ремонт',
+            3: 'Дизайн интерьера',
+            4: 'Перевозки',
+            5: 'IT услуги',
+            6: 'Образование',
+            7: 'Мобильная разработка',
+            8: 'Веб-разработка'
+        };
+
+        const citiesMap = {
+            1: 'Сеул',
+            2: 'Пусан',
+            3: 'Инчхон',
+            4: 'Тэгу',
+            5: 'Тэджон',
+            99: 'Вся Корея'
+        };
+
+        async function loadContact() {
+            try {
+                // Вызываем Cloud Function с POST методом
+                const response = await fetch(CLOUD_FUNCTION_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        uid: contactId
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.success && result.user) {
+                    contactData = result.user;
+                    renderContact(contactData);
+                } else {
+                    showDemoData();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showDemoData();
+            }
+
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('profileContainer').classList.remove('hidden');
+        }
+
+        function renderContact(data) {
+            // Profile Image
+            const profileImg = data.imagePath?.[0] || data.smallImagePath;
+            if (profileImg) {
+                document.getElementById('profileImage').src = profileImg;
+            }
+
+            // Name
+            const fullName = `${data.name || ''} ${data.surname || ''}`.trim();
+            if (fullName) {
+                document.getElementById('profileName').textContent = fullName;
+            }
+
+            // Location
+            const cities = data.cities?.map(id => citiesMap[id] || `Город ${id}`).join(', ');
+            if (cities) {
+                document.getElementById('profileLocation').textContent = cities;
+            }
+
+            // Tags
+            if (data.categories && data.categories.length > 0) {
+                const container = document.getElementById('tagsContainer');
+                container.innerHTML = '';
+                data.categories.forEach(catId => {
+                    const tag = document.createElement('div');
+                    tag.className = 'tag';
+                    tag.textContent = categoriesMap[catId] || `Категория ${catId}`;
+                    container.appendChild(tag);
+                });
+            }
+
+            // Short Description
+            if (data.bio) {
+                document.getElementById('shortDescription').textContent = data.bio;
+            }
+
+            // About
+            if (data.info) {
+                document.getElementById('aboutText').textContent = data.info;
+            }
+
+            // Social Links
+            renderSocialLinks(data);
+
+            // Gallery
+            if (data.imagePath && data.imagePath.length > 1) {
+                document.getElementById('gallerySection').classList.remove('hidden');
+                renderGallery(data.imagePath);
+            }
+
+            // Map
+            if (data.latitude && data.longitude) {
+                document.getElementById('mapSection').classList.remove('hidden');
+            }
+
+            // Rating
+            if (data.avgRating && data.totalReviews > 0) {
+                renderRating(data.avgRating, data.totalReviews);
+            }
+        }
+
+        function renderSocialLinks(data) {
+            const socialLinks = document.getElementById('socialLinks');
+            socialLinks.innerHTML = '';
+
+            const socials = [
+                { 
+                    key: 'instagram', 
+                    name: 'Instagram', 
+                    icon: '📷', 
+                    class: 'instagram',
+                    url: (v) => `https://instagram.com/${v.replace('@', '')}`,
+                    handle: (v) => `@${v.replace('@', '')}`
+                },
+                { 
+                    key: 'telegram', 
+                    name: 'Telegram', 
+                    icon: '✈️', 
+                    class: 'telegram',
+                    url: (v) => `https://t.me/${v.replace('@', '')}`,
+                    handle: (v) => `@${v.replace('@', '')}`
+                },
+                { 
+                    key: 'whatsApp', 
+                    name: 'WhatsApp', 
+                    icon: '💬', 
+                    class: 'whatsapp',
+                    url: (v) => `https://wa.me/${v}`,
+                    handle: (v) => v
+                },
+                { 
+                    key: 'kakao', 
+                    name: 'KakaoTalk', 
+                    icon: '💛', 
+                    class: 'kakao',
+                    url: (v) => `https://open.kakao.com/me/${v}`,
+                    handle: (v) => v
+                },
+                { 
+                    key: 'youtube', 
+                    name: 'YouTube', 
+                    icon: '▶️', 
+                    class: 'youtube',
+                    url: (v) => `https://youtube.com/${v}`,
+                    handle: (v) => v
+                },
+                { 
+                    key: 'facebook', 
+                    name: 'Facebook', 
+                    icon: '👥', 
+                    class: 'facebook',
+                    url: (v) => `https://facebook.com/${v}`,
+                    handle: (v) => v
+                },
+                { 
+                    key: 'tiktok', 
+                    name: 'TikTok', 
+                    icon: '🎵', 
+                    class: 'tiktok',
+                    url: (v) => `https://tiktok.com/@${v.replace('@', '')}`,
+                    handle: (v) => `@${v.replace('@', '')}`
+                },
+                { 
+                    key: 'linkedIn', 
+                    name: 'LinkedIn', 
+                    icon: '💼', 
+                    class: 'linkedin',
+                    url: (v) => `https://linkedin.com/in/${v}`,
+                    handle: (v) => v
+                },
+                { 
+                    key: 'twitter', 
+                    name: 'Twitter', 
+                    icon: '🐦', 
+                    class: 'twitter',
+                    url: (v) => `https://twitter.com/${v.replace('@', '')}`,
+                    handle: (v) => `@${v.replace('@', '')}`
+                }
+            ];
+
+            socials.forEach(social => {
+                if (data[social.key]) {
+                    const card = document.createElement('a');
+                    card.className = 'social-card';
+                    card.href = social.url(data[social.key]);
+                    card.target = '_blank';
+                    card.innerHTML = `
+                        <div class="social-icon-wrapper ${social.class}">
+                            <span style="font-size: 32px; color: white;">${social.icon}</span>
+                        </div>
+                        <div class="social-info">
+                            <div class="social-name">${social.name}</div>
+                            <div class="social-handle">${social.handle(data[social.key])}</div>
+                        </div>
+                    `;
+                    socialLinks.appendChild(card);
+                }
+            });
+        }
+
+        function renderGallery(images) {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            images.slice(1).forEach(imgUrl => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.innerHTML = `<img src="${imgUrl}" alt="Gallery">`;
+                item.onclick = () => openLightbox(imgUrl);
+                grid.appendChild(item);
+            });
+        }
+
+        function renderRating(avgRating, totalReviews) {
+            document.getElementById('ratingCount').textContent = `(${totalReviews} отзывов)`;
+            
+            const content = document.getElementById('ratingContent');
+            const stars = Math.floor(avgRating);
+            const hasHalf = avgRating % 1 >= 0.5;
+            
+            let starsHTML = '<div class="rating-stars">';
+            for (let i = 0; i < 5; i++) {
+                if (i < stars) {
+                    starsHTML += '<span class="star">★</span>';
+                } else if (i === stars && hasHalf) {
+                    starsHTML += '<span class="star">★</span>';
+                } else {
+                    starsHTML += '<span class="star empty">★</span>';
+                }
+            }
+            starsHTML += '</div>';
+            starsHTML += `<div class="rating-value">${avgRating.toFixed(1)} / 5.0</div>`;
+            
+            content.innerHTML = starsHTML;
+        }
+
+        function showDemoData() {
+            const demoData = {
+                name: 'Ли',
+                surname: 'Сергей',
+                bio: 'Разработка мобильных и веб приложений любой сложности.',
+                info: `Привет! Я, Сергей, разработчик приложения Ethnogram. Надеюсь Вам нравится наше приложение и оно помогает Вам находить нужных Вам людей и места в несколько тапов!
+
+Если у Вас есть какие либо предложения или Вы столкнулись с проблемами используя приложение, пожалуйста, напишите мне в любом из нижеперечисленных мессенджеров.
+
+Ваши отзывы очень важны для улучшения платформы. Спасибо!
+
+По вопросам сотрудничества пишите в мой телеграм 👇`,
+                phone: '+82 10-1234-5678',
+                categories: [7, 8],
+                cities: [99],
+                instagram: 'k0jihero',
+                telegram: 'k0jihero'
+            };
+
+            renderContact(demoData);
+        }
+
+        window.toggleAbout = function() {
+            const text = document.getElementById('aboutText');
+            const btn = document.getElementById('collapseBtn');
+            
+            if (text.classList.contains('collapsed')) {
+                text.classList.remove('collapsed');
+                btn.textContent = 'свернуть';
+            } else {
+                text.classList.add('collapsed');
+                btn.textContent = 'развернуть';
+            }
+        };
+
+        window.callPhone = function() {
+            const phone = contactData?.phone || '+82 10-1234-5678';
+            window.location.href = `tel:${phone.replace(/\s/g, '')}`;
+        };
+
+        window.openChat = function() {
+            if (contactData?.telegram) {
+                window.open(`https://t.me/${contactData.telegram}`, '_blank');
+            } else if (contactData?.kakao) {
+                window.open(`https://open.kakao.com/me/${contactData.kakao}`, '_blank');
+            } else {
+                alert('Контакт не указан');
+            }
+        };
+
+        window.openMap = function() {
+            if (contactData?.latitude && contactData?.longitude) {
+                window.open(`https://maps.google.com/?q=${contactData.latitude},${contactData.longitude}`, '_blank');
+            }
+        };
+
+        window.openLightbox = function(imgUrl) {
+            document.getElementById('lightboxImage').src = imgUrl;
+            document.getElementById('lightbox').classList.add('active');
+        };
+
+        window.closeLightbox = function() {
+            document.getElementById('lightbox').classList.remove('active');
+        };
+
+        loadContact();
+    </script>
+</body>
+</html>
