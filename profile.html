@@ -677,7 +677,7 @@
 
         function renderContact(data) {
             // Profile Image
-            const profileImg = data.imagePath?.[0] || data.smallImagePath;
+            const profileImg = data.image?.[0] || data.smallImage;
             if (profileImg) {
                 document.getElementById('profileImage').src = profileImg;
             }
@@ -720,9 +720,9 @@
             renderSocialLinks(data);
 
             // Gallery
-            if (data.imagePath && data.imagePath.length > 1) {
+            if (data.image && data.image.length > 1) {
                 document.getElementById('gallerySection').classList.remove('hidden');
-                renderGallery(data.imagePath);
+                renderGallery(data.image);
             }
 
             // Map
