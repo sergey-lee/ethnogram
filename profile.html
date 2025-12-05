@@ -842,7 +842,8 @@ const categoriesMap = [
                 data.categories.forEach(catId => {
                     const tag = document.createElement('div');
                     tag.className = 'tag';
-                    tag.textContent = categoriesMap[catId].title || `Категория ${catId}`;
+                    const category = categoriesMap.find(cat => cat.id === catId);
+                    tag.textContent = category?.title || `Категория ${catId}`;
                     container.appendChild(tag);
                 });
             }
@@ -1019,7 +1020,7 @@ const categoriesMap = [
                 bio: '-',
                 info: `-`,
                 phone: '+82 10-1234-5678',
-                categories: [7, 8],
+                categories: [101, 201],
                 cities: [99],
             };
 
