@@ -610,7 +610,8 @@
     </div>
 
     <script>
-        const CLOUD_FUNCTION_URL = 'https://us-central1-ethnogram-1cd0f.cloudfunctions.net/getUserByUID';
+        // Используем публичную функцию для просмотра профилей
+        const CLOUD_FUNCTION_URL = 'https://us-central1-ethnogram-1cd0f.cloudfunctions.net/getPublicProfile';
         
         const urlParams = new URLSearchParams(window.location.search);
         const contactId = urlParams.get('uid') || 'DEMO';
@@ -639,7 +640,7 @@
 
         async function loadContact() {
             try {
-                // Вызываем Cloud Function с POST методом
+                // Вызываем публичную Cloud Function с POST методом
                 const response = await fetch(CLOUD_FUNCTION_URL, {
                     method: 'POST',
                     headers: {
@@ -651,19 +652,22 @@
                 });
                 
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    const errorData = await response.json().catch(() => ({}));
+                    console.error('Error response:', errorData);
+                    throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
                 }
                 
                 const result = await response.json();
                 
-                if (result.success && result.user) {
+                if (result.user) {
                     contactData = result.user;
                     renderContact(contactData);
                 } else {
+                    console.log('User data not found in response');
                     showDemoData();
                 }
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error loading contact:', error);
                 showDemoData();
             }
 
