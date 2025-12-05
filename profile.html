@@ -513,10 +513,10 @@
     </div>
 
 
-    <!-- Loading
+    <!-- Loading -->
     <div id="loading" class="loading">
         <div>Загрузка...</div>
-    </div> -->
+    </div>
 
     <!-- Profile Container -->
     <div id="profileContainer" class="profile-container hidden">
@@ -655,6 +655,13 @@
         };
 
         async function loadContact() {
+        const timeoutId = setTimeout(() => {
+        console.log('⏱️ Timeout - showing demo data');
+        showDemoData();
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('profileContainer').classList.remove('hidden');
+    }, 5000);
+
             try {
                 // Вызываем публичную Cloud Function с POST методом
                 const response = await fetch(CLOUD_FUNCTION_URL, {
@@ -683,12 +690,15 @@
                     showDemoData();
                 }
             } catch (error) {
-                console.error('Error loading contact:', error);
-                showDemoData();
-            }
+                 clearTimeout(timeoutId);
+        console.error('Error:', error);
+        showDemoData();
+            } finally {
+                 
 
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('profileContainer').classList.remove('hidden');
+            }
         }
 
         function renderContact(data) {
