@@ -854,8 +854,9 @@ const categoriesMap = [
             }
 
             // About
+            console.log('About Info:', data.info);
             if (data.info) {
-                document.getElementById('aboutText').textContent = data.info;
+                document.getElementById('aboutText').textContent = data.info || 'пусто';
             }
 
             // Social Links
