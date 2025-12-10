@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "net.alienminds.ethnogram",
+      "sha256_cert_fingerprints": [
+        "3E:50:28:A4:D0:B7:0F:56:8E:30:44:EF:E3:CA:F2:98:74:01:54:08:BE:56:B2:93:84:38:59:D9:31:A5:E8:E6",
+        "FB:99:12:D8:25:BD:DA:BC:C8:41:AC:A9:7F:CB:9E:CE:9F:31:69:BE:A0:79:A5:EE:0B:B5:CB:9F:6A:49:27:BB"
+      ]
+    }
+  }
+]
