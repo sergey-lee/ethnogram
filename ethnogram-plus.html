@@ -396,6 +396,200 @@
             font-weight: 600;
         }
 
+        .cases-section {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            animation: fadeIn 0.8s ease-out 1.2s both;
+        }
+
+        .cases-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .cases-header h3 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .cases-header p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .case-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .case-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .case-item:hover {
+            border-color: rgba(192, 192, 200, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .case-item.active {
+            border-color: rgba(192, 192, 200, 0.3);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .case-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .case-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .case-icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: 10px;
+            background: rgba(192, 192, 200, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .case-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--silver-light);
+        }
+
+        .case-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .case-arrow {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .case-item.active .case-arrow {
+            transform: rotate(180deg);
+        }
+
+        .case-arrow svg {
+            width: 20px;
+            height: 20px;
+            color: var(--silver);
+        }
+
+        .case-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .case-item.active .case-content {
+            max-height: 1000px;
+        }
+
+        .case-screenshot {
+            padding: 0 20px 20px 20px;
+        }
+
+        .screenshot-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(192, 192, 200, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            display: block;
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: linear-gradient(135deg, rgba(192, 192, 200, 0.05) 0%, rgba(142, 142, 147, 0.08) 100%);
+            border: 1px dashed rgba(192, 192, 200, 0.2);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--text-secondary);
+        }
+
+        .screenshot-placeholder svg {
+            width: 48px;
+            height: 48px;
+            opacity: 0.4;
+        }
+
+        .screenshot-placeholder span {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .case-description {
+            padding: 0 20px 24px 20px;
+        }
+
+        .case-description h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .case-description p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .case-description ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .case-description li {
+            font-size: 13px;
+            color: var(--text-secondary);
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .case-description li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--silver);
+            font-weight: 700;
+        }
+
         /* Decorative elements */
         .deco-circle {
             position: absolute;
@@ -449,6 +643,58 @@
                 height: 40px;
                 min-width: 40px;
             }
+
+            .cases-section {
+                margin-top: 32px;
+                padding-top: 32px;
+            }
+
+            .cases-header h3 {
+                font-size: 18px;
+            }
+
+            .case-trigger {
+                padding: 16px;
+            }
+
+            .case-info {
+                gap: 12px;
+            }
+
+            .case-icon {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+            }
+
+            .case-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .case-title {
+                font-size: 14px;
+            }
+
+            .case-screenshot {
+                padding: 0 16px 16px 16px;
+            }
+
+            .screenshot-image {
+                border-radius: 10px;
+            }
+
+            .case-description {
+                padding: 0 16px 20px 16px;
+            }
+
+            .case-description h4 {
+                font-size: 15px;
+            }
+
+            .case-description p {
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -459,8 +705,11 @@
             <div class="deco-circle deco-circle-2"></div>
             
             <div class="brand-header">
-                <!-- <div class="logo">
-                    <svg viewBox="0 0 40 40" fill="none">
+                <div class="logo">
+                       
+                                <img src="assets/ethnogram.png" alt="Топ в категории" class="screenshot-image">
+                            
+                    <!-- <svg viewBox="0 0 40 40" fill="none">
                         <circle cx="20" cy="20" r="18" stroke="url(#gradient1)" stroke-width="2"/>
                         <circle cx="20" cy="20" r="12" stroke="url(#gradient1)" stroke-width="2"/>
                         <circle cx="20" cy="20" r="6" stroke="url(#gradient1)" stroke-width="2"/>
@@ -475,8 +724,8 @@
                                 <stop offset="100%" stop-color="#A8A8B0"/>
                             </linearGradient>
                         </defs>
-                    </svg>
-                </div> -->
+                    </svg> -->
+                </div>
                 <div class="brand-name">Ethnogram</div>
             </div>
             
@@ -505,8 +754,10 @@
                     </div>
                 </div>
                 <p class="offer-text">
-                    Зафиксируйте текущую цену! При росте аудитории стоимость подписки увеличится. 
-                    <strong>Это предложение действует только до начала Марта 2026 года.</strong>
+                    Зафиксируйте текущую цену! При росте аудитории стоимость подписки увеличится.
+                </p>
+                <p class="offer-text">
+                    <strong>Это предложение действует только 3 месяца.</strong>
                 </p>
             </div>
 
@@ -587,7 +838,139 @@
             <!-- <div class="duration-info">
                 Подписка действует <strong>6 месяцев</strong> по этой цене
             </div> -->
+
+            <div class="cases-section">
+                <div class="cases-header">
+                    <h3>Как это работает?</h3>
+                    <p>Смотрите реальные примеры преимуществ</p>
+                </div>
+
+                <div class="case-items">
+                    <div class="case-item">
+                        <div class="case-trigger">
+                            <div class="case-info">
+                                <div class="case-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <div class="case-title">Видимость на карте</div>
+                            </div>
+                            <div class="case-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="case-content">
+                            <div class="case-screenshot">
+                                <img src="assets/map.png" alt="Карта Ethnogram" class="screenshot-image">
+                            </div>
+                            <div class="case-description">
+                                <h4>Ваш бизнес всегда на виду</h4>
+                                <p>Маркер вашей компании постоянно отображается на главной карте приложения. Пользователи видят вас сразу при открытии Ethnogram — без поиска и фильтров.</p>
+                                <ul>
+                                    <li>Постоянное присутствие на карте</li>
+                                    <li>Выделение среди обычных компаний</li>
+                                    <li>Первый контакт с клиентом</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-item">
+                        <div class="case-trigger">
+                            <div class="case-info">
+                                <div class="case-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="8" y1="6" x2="21" y2="6"></line>
+                                        <line x1="8" y1="12" x2="21" y2="12"></line>
+                                        <line x1="8" y1="18" x2="21" y2="18"></line>
+                                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                                    </svg>
+                                </div>
+                                <div class="case-title">Приоритет в списке</div>
+                            </div>
+                            <div class="case-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="case-content">
+                            <div class="case-screenshot">
+                                <img src="assets/topinlist.jpeg" alt="Топ в списке" class="screenshot-image">
+                            </div>
+                            <div class="case-description">
+                                <h4>Вы в начале каждого поиска</h4>
+                                <p>При любом поиске по приложению ваша компания появляется в топе результатов. Пользователи увидят вас раньше конкурентов, даже если они не искали именно вас.</p>
+                                <ul>
+                                    <li>Топовая позиция в результатах поиска</li>
+                                    <li>Серебряная рамка как знак качества</li>
+                                    <li>Больше переходов в профиль</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-item">
+                        <div class="case-trigger">
+                            <div class="case-info">
+                                <div class="case-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                                        <line x1="4" y1="22" x2="4" y2="15"></line>
+                                    </svg>
+                                </div>
+                                <div class="case-title">Лидер категории</div>
+                            </div>
+                            <div class="case-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="case-content">
+                            <div class="case-screenshot">
+                                <img src="assets/topincat.jpeg" alt="Топ в категории" class="screenshot-image">
+                            </div>
+                            <div class="case-description">
+                                <h4>Доминируйте в своей нише</h4>
+                                <p>Закрепитесь на первых позициях в вашей категории. Когда пользователь ищет ресторан, салон или магазин — он увидит вас первым среди всех компаний вашей сферы.</p>
+                                <ul>
+                                    <li>Первая позиция в категории</li>
+                                    <li>Максимальная конверсия целевой аудитории</li>
+                                    <li>Репутация лидера рынка</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Case items toggle functionality
+        document.querySelectorAll('.case-trigger').forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const caseItem = this.closest('.case-item');
+                const isActive = caseItem.classList.contains('active');
+                
+                // Close all other cases
+                document.querySelectorAll('.case-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current case
+                if (!isActive) {
+                    caseItem.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
