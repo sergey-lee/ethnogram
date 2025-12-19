@@ -28,13 +28,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
             --bg-primary: #0a0e14;
             --bg-secondary: #141922;
             --bg-card: #1a1f2e;
-            --accent-orange: #ff6b35;
+            --accent-primary: #a855f7;
+            --accent-secondary: #8b5cf6;
             --accent-cyan: #00d9ff;
             --accent-yellow: #ffd23f;
             --text-primary: #e8eaed;
@@ -64,7 +66,7 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(255, 107, 53, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
             animation: gridMove 20s linear infinite;
@@ -88,7 +90,7 @@
         .orb-1 {
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, var(--accent-orange), transparent);
+            background: radial-gradient(circle, var(--accent-primary), transparent);
             top: -200px;
             right: -200px;
             animation-delay: 0s;
@@ -114,7 +116,7 @@
             background: var(--bg-secondary);
             padding: 2rem;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.1);
             position: relative;
             z-index: 1;
             animation: fadeInDown 0.6s ease-out;
@@ -206,13 +208,13 @@
             object-fit: cover;
             margin-bottom: 2rem;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(255, 107, 53, 0.3);
+            border: 2px solid rgba(168, 85, 247, 0.3);
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .profile-image:hover {
             transform: scale(1.02);
-            border-color: var(--accent-orange);
+            border-color: var(--accent-primary);
         }
 
         /* Profile Info */
@@ -221,7 +223,7 @@
             padding: 2.5rem;
             border-radius: 24px;
             margin: 0 1rem 2rem;
-            border: 1px solid rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.1);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
@@ -241,7 +243,7 @@
             font-family: 'Syne', sans-serif;
             font-size: 2.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--text-primary), var(--accent-orange));
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -258,7 +260,10 @@
         }
 
         .profile-location::before {
-            content: '📍';
+            content: '';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            content: '\f3c5';
             font-size: 1.2rem;
         }
 
@@ -271,7 +276,7 @@
             width: 56px;
             height: 56px;
             border-radius: 28px;
-            background: linear-gradient(135deg, var(--accent-orange), #ff8c5a);
+            background: linear-gradient(135deg, var(--accent-primary), #c084fc);
             border: none;
             display: flex;
             align-items: center;
@@ -279,7 +284,7 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -301,7 +306,7 @@
 
         .action-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
         }
 
         .action-btn:active {
@@ -364,7 +369,7 @@
             left: 0;
             width: 60%;
             height: 2px;
-            background: linear-gradient(90deg, var(--accent-orange), transparent);
+            background: linear-gradient(90deg, var(--accent-primary), transparent);
         }
 
         /* About Section */
@@ -387,7 +392,7 @@
         }
 
         .collapse-btn:hover {
-            color: var(--accent-orange);
+            color: var(--accent-primary);
         }
 
         .about-text.collapsed {
@@ -420,7 +425,7 @@
             gap: 1rem;
             padding: 1.25rem;
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.1);
             border-radius: 16px;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -435,7 +440,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.05), transparent);
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.05), transparent);
             transition: left 0.5s;
         }
 
@@ -445,9 +450,9 @@
 
         .social-card:hover {
             transform: translateY(-3px);
-            border-color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.05);
-            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
+            border-color: var(--accent-primary);
+            background: rgba(168, 85, 247, 0.05);
+            box-shadow: 0 5px 20px rgba(168, 85, 247, 0.2);
         }
 
         .social-icon-wrapper {
@@ -531,14 +536,14 @@
             overflow: hidden;
             cursor: pointer;
             border-radius: 12px;
-            border: 1px solid rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.1);
             transition: all 0.3s ease;
         }
 
         .gallery-item:hover {
             transform: scale(1.05);
-            border-color: var(--accent-orange);
-            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+            border-color: var(--accent-primary);
+            box-shadow: 0 5px 20px rgba(168, 85, 247, 0.3);
         }
 
         .gallery-item img {
@@ -552,7 +557,7 @@
             width: 100%;
             height: 220px;
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.1);
             border-radius: 16px;
             display: flex;
             flex-direction: column;
@@ -571,7 +576,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.05), transparent);
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.05), transparent);
             transition: left 0.5s;
         }
 
@@ -580,10 +585,10 @@
         }
 
         .map-placeholder:hover {
-            background: rgba(255, 107, 53, 0.05);
-            border-color: var(--accent-orange);
+            background: rgba(168, 85, 247, 0.05);
+            border-color: var(--accent-primary);
             transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
+            box-shadow: 0 5px 20px rgba(168, 85, 247, 0.2);
         }
 
         .map-icon {
@@ -599,7 +604,7 @@
         /* Rating Section */
         .rating-section {
             padding-top: 2.5rem;
-            border-top: 1px solid rgba(255, 107, 53, 0.1);
+            border-top: 1px solid rgba(168, 85, 247, 0.1);
             margin-top: 2.5rem;
         }
 
@@ -685,7 +690,7 @@
             right: 2rem;
             width: 50px;
             height: 50px;
-            background: var(--accent-orange);
+            background: var(--accent-primary);
             border-radius: 25px;
             display: flex;
             align-items: center;
@@ -694,7 +699,7 @@
             cursor: pointer;
             color: white;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
         }
 
         .lightbox-close:hover {
@@ -754,7 +759,7 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--accent-orange);
+            background: var(--accent-primary);
             border-radius: 5px;
         }
 
@@ -804,8 +809,12 @@
                     <div class="profile-location" id="profileLocation">Вся Корея</div>
                 </div>
                 <div class="action-buttons">
-                    <button class="action-btn" onclick="callPhone()" title="Позвонить">📞</button>
-                    <button class="action-btn" onclick="openChat()" title="Написать">💬</button>
+                    <button class="action-btn" onclick="callPhone()" title="Позвонить">
+                        <i class="fas fa-phone"></i>
+                    </button>
+                    <button class="action-btn" onclick="openChat()" title="Написать">
+                        <i class="fas fa-comment"></i>
+                    </button>
                 </div>
             </div>
 
@@ -833,7 +842,7 @@
                 <div class="social-links" id="socialLinks">
                     <a href="#" class="social-card" id="instagramCard">
                         <div class="social-icon-wrapper instagram">
-                            <span style="font-size: 32px; color: white;">📷</span>
+                            <i class="fa-brands fa-instagram" style="font-size: 28px; color: white;"></i>
                         </div>
                         <div class="social-info">
                             <div class="social-name">Instagram</div>
@@ -843,7 +852,7 @@
 
                     <a href="#" class="social-card" id="telegramCard">
                         <div class="social-icon-wrapper telegram">
-                            <span style="font-size: 32px; color: white;">✈️</span>
+                            <i class="fa-brands fa-telegram" style="font-size: 28px; color: white;"></i>
                         </div>
                         <div class="social-info">
                             <div class="social-name">Telegram</div>
@@ -863,7 +872,7 @@
             <div class="section map-section hidden" id="mapSection">
                 <div class="section-title">Местоположение</div>
                 <div class="map-placeholder" onclick="openMap()">
-                    <div class="map-icon">📍</div>
+                    <div class="map-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <div class="map-text">Открыть на карте</div>
                 </div>
             </div>
@@ -1109,7 +1118,7 @@
                 { 
                     key: 'instagram', 
                     name: 'Instagram', 
-                    icon: '📷', 
+                    icon: 'fa-brands fa-instagram', 
                     class: 'instagram',
                     url: (v) => `https://instagram.com/${v.replace('@', '')}`,
                     handle: (v) => `@${v.replace('@', '')}`
@@ -1117,7 +1126,7 @@
                 { 
                     key: 'telegram', 
                     name: 'Telegram', 
-                    icon: '✈️', 
+                    icon: 'fa-brands fa-telegram', 
                     class: 'telegram',
                     url: (v) => `https://t.me/${v.replace('@', '')}`,
                     handle: (v) => `@${v.replace('@', '')}`
@@ -1125,7 +1134,7 @@
                 { 
                     key: 'whatsApp', 
                     name: 'WhatsApp', 
-                    icon: '💬', 
+                    icon: 'fa-brands fa-whatsapp', 
                     class: 'whatsapp',
                     url: (v) => `https://wa.me/${v}`,
                     handle: (v) => v
@@ -1133,7 +1142,7 @@
                 { 
                     key: 'kakao', 
                     name: 'KakaoTalk', 
-                    icon: '💛', 
+                    icon: 'fa-solid fa-comment', 
                     class: 'kakao',
                     url: (v) => `https://open.kakao.com/me/${v}`,
                     handle: (v) => v
@@ -1141,7 +1150,7 @@
                 { 
                     key: 'youtube', 
                     name: 'YouTube', 
-                    icon: '▶️', 
+                    icon: 'fa-brands fa-youtube', 
                     class: 'youtube',
                     url: (v) => `https://youtube.com/${v}`,
                     handle: (v) => v
@@ -1149,7 +1158,7 @@
                 { 
                     key: 'facebook', 
                     name: 'Facebook', 
-                    icon: '👥', 
+                    icon: 'fa-brands fa-facebook', 
                     class: 'facebook',
                     url: (v) => `https://facebook.com/${v}`,
                     handle: (v) => v
@@ -1157,7 +1166,7 @@
                 { 
                     key: 'tiktok', 
                     name: 'TikTok', 
-                    icon: '🎵', 
+                    icon: 'fa-brands fa-tiktok', 
                     class: 'tiktok',
                     url: (v) => `https://tiktok.com/@${v.replace('@', '')}`,
                     handle: (v) => `@${v.replace('@', '')}`
@@ -1165,7 +1174,7 @@
                 { 
                     key: 'linkedIn', 
                     name: 'LinkedIn', 
-                    icon: '💼', 
+                    icon: 'fa-brands fa-linkedin', 
                     class: 'linkedin',
                     url: (v) => `https://linkedin.com/in/${v}`,
                     handle: (v) => v
@@ -1173,7 +1182,7 @@
                 { 
                     key: 'twitter', 
                     name: 'Twitter', 
-                    icon: '🐦', 
+                    icon: 'fa-brands fa-x-twitter', 
                     class: 'twitter',
                     url: (v) => `https://twitter.com/${v.replace('@', '')}`,
                     handle: (v) => `@${v.replace('@', '')}`
@@ -1188,7 +1197,7 @@
                     card.target = '_blank';
                     card.innerHTML = `
                         <div class="social-icon-wrapper ${social.class}">
-                            <span style="font-size: 32px; color: white;">${social.icon}</span>
+                            <i class="${social.icon}" style="font-size: 28px; color: white;"></i>
                         </div>
                         <div class="social-info">
                             <div class="social-name">${social.name}</div>
