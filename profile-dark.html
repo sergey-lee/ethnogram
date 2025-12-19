@@ -1474,9 +1474,7 @@
             if (data.avgRating && data.totalReviews > 0) {
                 renderRating(data.avgRating, data.totalReviews);
             }
-    if (data.phone !== null && data.phone !== "") {
-        document.getElementById("actionButtons").style.display = "flex";
-    }
+   
         }
 
         function renderSocialLinks(data) {
@@ -1642,8 +1640,12 @@
         };
 
         window.callPhone = function() {
-            const phone = contactData?.phone || '+82 10-1234-5678';
-            window.location.href = `tel:${phone.replace(/\s/g, '')}`;
+            if (contactData?.phone) {
+                const phone = contactData?.phone;
+                window.location.href = `tel:${phone.replace(/\s/g, '')}`;
+            } else {
+                alert('Номер телефона не указан');
+            }
         };
 
         window.openChat = function() {
