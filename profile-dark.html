@@ -180,11 +180,12 @@
 
         /* Profile Container */
         .profile-container {
-            max-width: 900px;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
             animation: fadeIn 0.8s ease-out;
+            padding: 0 2rem 4rem;
         }
 
         @keyframes fadeIn {
@@ -192,39 +193,128 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Profile Layout */
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Sticky Sidebar */
+        .profile-sidebar {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .profile-main {
+            min-height: 100vh;
+        }
+
         /* Profile Header */
         .profile-header {
-            padding: 3rem 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: rgba(26, 31, 46, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), transparent);
+        }
+
+        .profile-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .profile-image {
             width: 100%;
-            max-width: 400px;
             aspect-ratio: 1;
             border-radius: 24px;
             object-fit: cover;
-            margin-bottom: 2rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(168, 85, 247, 0.3);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(168, 85, 247, 0.3),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
         }
 
         .profile-image:hover {
-            transform: scale(1.02);
-            border-color: var(--accent-primary);
+            transform: scale(1.02) translateY(-5px);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(168, 85, 247, 0.5),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.2);
         }
 
         /* Profile Info */
         .profile-info {
-            background: var(--bg-card);
+            background: rgba(26, 31, 46, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             padding: 2.5rem;
             border-radius: 24px;
-            margin: 0 1rem 2rem;
-            border: 1px solid rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.2);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), transparent);
+        }
+
+        /* Decorative Elements */
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(168, 85, 247, 0.1);
+            pointer-events: none;
+        }
+
+        .decorative-circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: -100px;
+            right: -100px;
+        }
+
+        .decorative-circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            bottom: -75px;
+            left: -75px;
         }
 
         .info-header {
@@ -313,6 +403,105 @@
             transform: translateY(-1px);
         }
 
+        /* Floating Action Bar */
+        .floating-actions {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 100;
+            animation: slideInRight 0.5s ease-out 0.5s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 30px rgba(168, 85, 247, 0.5);
+        }
+
+        .floating-btn:hover::before {
+            left: 100%;
+        }
+
+        .floating-btn:active {
+            transform: scale(1.05);
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: rgba(26, 31, 46, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(168, 85, 247, 0.1);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.05), transparent);
+            transition: left 0.5s;
+        }
+
+        .section-card:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-card:hover::before {
+            left: 100%;
+        }
+
         /* Tags */
         .tags-container {
             display: flex;
@@ -322,20 +511,40 @@
         }
 
         .tag {
-            padding: 0.6rem 1.2rem;
-            background: rgba(0, 217, 255, 0.1);
+            padding: 0.7rem 1.4rem;
+            background: rgba(0, 217, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 217, 255, 0.3);
-            border-radius: 20px;
+            border-radius: 25px;
             font-size: 0.9rem;
             color: var(--accent-cyan);
             transition: all 0.3s ease;
             cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.2), transparent);
+            transition: left 0.5s;
         }
 
         .tag:hover {
             background: rgba(0, 217, 255, 0.15);
             border-color: var(--accent-cyan);
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3);
+        }
+
+        .tag:hover::before {
+            left: 100%;
         }
 
         /* Description */
@@ -373,12 +582,26 @@
         }
 
         /* About Section */
+        .about-section {
+            position: relative;
+        }
+
         .about-text {
             font-size: 1rem;
             color: var(--text-secondary);
             line-height: 1.8;
             white-space: pre-wrap;
             font-weight: 300;
+            padding: 1.5rem;
+            background: rgba(168, 85, 247, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(168, 85, 247, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .about-text:hover {
+            background: rgba(168, 85, 247, 0.05);
+            border-color: rgba(168, 85, 247, 0.2);
         }
 
         .collapse-btn {
@@ -387,12 +610,17 @@
             cursor: pointer;
             display: inline-block;
             margin-top: 1rem;
-            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
             font-weight: 500;
         }
 
         .collapse-btn:hover {
+            background: rgba(0, 217, 255, 0.2);
             color: var(--accent-primary);
+            transform: translateX(5px);
         }
 
         .about-text.collapsed {
@@ -408,13 +636,13 @@
             left: 0;
             right: 0;
             height: 60px;
-            background: linear-gradient(to bottom, transparent, var(--bg-card));
+            background: linear-gradient(to bottom, transparent, rgba(26, 31, 46, 0.6));
         }
 
         /* Social Links */
         .social-links {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
             margin-bottom: 2.5rem;
         }
@@ -425,12 +653,15 @@
             gap: 1rem;
             padding: 1.25rem;
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(168, 85, 247, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.15);
             border-radius: 16px;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
         }
 
         .social-card::before {
@@ -440,7 +671,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.05), transparent);
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.1), transparent);
             transition: left 0.5s;
         }
 
@@ -449,10 +680,16 @@
         }
 
         .social-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.02);
             border-color: var(--accent-primary);
-            background: rgba(168, 85, 247, 0.05);
-            box-shadow: 0 5px 20px rgba(168, 85, 247, 0.2);
+            background: rgba(168, 85, 247, 0.08);
+            box-shadow: 
+                0 10px 30px rgba(168, 85, 247, 0.3),
+                0 0 20px rgba(168, 85, 247, 0.1);
+        }
+
+        .social-card:active {
+            transform: translateY(-3px) scale(1.01);
         }
 
         .social-icon-wrapper {
@@ -527,44 +764,70 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 0.75rem;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
         }
 
         .gallery-item {
             aspect-ratio: 1;
             overflow: hidden;
             cursor: pointer;
-            border-radius: 12px;
-            border: 1px solid rgba(168, 85, 247, 0.1);
-            transition: all 0.3s ease;
+            border-radius: 16px;
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            background: rgba(26, 31, 46, 0.4);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
         }
 
         .gallery-item:hover {
-            transform: scale(1.05);
+            transform: scale(1.08) translateY(-5px);
             border-color: var(--accent-primary);
-            box-shadow: 0 5px 20px rgba(168, 85, 247, 0.3);
+            box-shadow: 
+                0 15px 40px rgba(168, 85, 247, 0.4),
+                0 0 20px rgba(168, 85, 247, 0.2);
+            z-index: 10;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
         }
 
         /* Map Section */
         .map-placeholder {
             width: 100%;
-            height: 220px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(168, 85, 247, 0.1);
-            border-radius: 16px;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(0, 217, 255, 0.05));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
         }
@@ -576,7 +839,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.05), transparent);
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.1), transparent);
             transition: left 0.5s;
         }
 
@@ -585,27 +848,35 @@
         }
 
         .map-placeholder:hover {
-            background: rgba(168, 85, 247, 0.05);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(0, 217, 255, 0.1));
             border-color: var(--accent-primary);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(168, 85, 247, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.3);
         }
 
         .map-icon {
             font-size: 3rem;
             margin-bottom: 0.75rem;
+            color: var(--accent-primary);
+            transition: all 0.3s ease;
+        }
+
+        .map-placeholder:hover .map-icon {
+            transform: scale(1.2) translateY(-5px);
+            color: var(--accent-cyan);
         }
 
         .map-text {
             font-size: 1rem;
             color: var(--text-secondary);
+            font-weight: 500;
         }
 
         /* Rating Section */
         .rating-section {
-            padding-top: 2.5rem;
-            border-top: 1px solid rgba(168, 85, 247, 0.1);
-            margin-top: 2.5rem;
+            padding-top: 0;
+            border-top: none;
+            margin-top: 0;
         }
 
         .rating-header {
@@ -630,6 +901,11 @@
         .no-reviews {
             font-size: 1rem;
             color: var(--text-secondary);
+            padding: 2rem;
+            text-align: center;
+            background: rgba(168, 85, 247, 0.05);
+            border-radius: 12px;
+            border: 1px dashed rgba(168, 85, 247, 0.2);
         }
 
         .rating-stars {
@@ -642,6 +918,11 @@
             font-size: 1.8rem;
             color: var(--accent-yellow);
             text-shadow: 0 2px 8px rgba(255, 210, 63, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .star:hover {
+            transform: scale(1.2);
         }
 
         .star.empty {
@@ -654,6 +935,7 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--accent-yellow);
+            text-shadow: 0 2px 10px rgba(255, 210, 63, 0.3);
         }
 
         /* Lightbox */
@@ -708,7 +990,33 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .profile-sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .floating-actions {
+                bottom: 1rem;
+                right: 1rem;
+            }
+
+            .floating-btn {
+                width: 55px;
+                height: 55px;
+            }
+        }
+
         @media (max-width: 768px) {
+            .profile-container {
+                padding: 0 1rem 2rem;
+            }
+
             .profile-name {
                 font-size: 2rem;
             }
@@ -723,9 +1031,9 @@
                 justify-content: flex-end;
             }
 
-            .profile-info {
+            .profile-info,
+            .profile-header {
                 padding: 1.5rem;
-                margin: 0 0.5rem 1rem;
             }
 
             .section-title {
@@ -734,6 +1042,7 @@
 
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
             }
 
             .social-links {
@@ -746,6 +1055,41 @@
 
             .banner-text {
                 font-size: 0.85rem;
+            }
+
+            .floating-actions {
+                flex-direction: row;
+                bottom: 1rem;
+                right: 50%;
+                transform: translateX(50%);
+            }
+
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+            }
+
+            .section-card {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-name {
+                font-size: 1.75rem;
+            }
+
+            .tags-container {
+                gap: 0.5rem;
+            }
+
+            .tag {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -796,97 +1140,118 @@
 
     <!-- Profile Container -->
     <div id="profileContainer" class="profile-container hidden">
-        <!-- Profile Header -->
-        <div class="profile-header">
-            <img id="profileImage" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="Profile" class="profile-image">
+        <div class="profile-layout">
+            <!-- Left Column - Sidebar -->
+            <div class="profile-sidebar">
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <img id="profileImage" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="Profile" class="profile-image">
+                </div>
+
+                <!-- Profile Info -->
+                <div class="profile-info">
+                    <div class="decorative-circle"></div>
+                    <div class="decorative-circle"></div>
+                    
+                    <div class="info-header">
+                        <div class="name-location">
+                            <div class="profile-name" id="profileName">Ли Сергей</div>
+                            <div class="profile-location" id="profileLocation">Вся Корея</div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="action-btn" onclick="callPhone()" title="Позвонить">
+                                <i class="fas fa-phone"></i>
+                            </button>
+                            <button class="action-btn" onclick="openChat()" title="Написать">
+                                <i class="fas fa-comment"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="tags-container" id="tagsContainer">
+                        <div class="tag">Мобильная разработка</div>
+                        <div class="tag">Веб-разработка</div>
+                    </div>
+
+                    <!-- Short Description -->
+                    <div class="short-description" id="shortDescription">
+                        Разработка мобильных и веб приложений любой сложности.
+                    </div>
+
+                    <!-- About Section -->
+                    <div class="section about-section">
+                        <div class="section-title">О себе</div>
+                        <div class="about-text" id="aboutText">-</div>
+                        <span class="collapse-btn" id="collapseBtn" onclick="toggleAbout()">свернуть</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Main Content -->
+            <div class="profile-main">
+                <!-- Social Links -->
+                <div class="section-card">
+                    <div class="section-title">Социальные сети</div>
+                    <div class="social-links" id="socialLinks">
+                        <a href="#" class="social-card" id="instagramCard">
+                            <div class="social-icon-wrapper instagram">
+                                <i class="fa-brands fa-instagram" style="font-size: 28px; color: white;"></i>
+                            </div>
+                            <div class="social-info">
+                                <div class="social-name">Instagram</div>
+                                <div class="social-handle" id="instagramHandle">@username</div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="social-card" id="telegramCard">
+                            <div class="social-icon-wrapper telegram">
+                                <i class="fa-brands fa-telegram" style="font-size: 28px; color: white;"></i>
+                            </div>
+                            <div class="social-info">
+                                <div class="social-name">Telegram</div>
+                                <div class="social-handle" id="telegramHandle">@username</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gallery Section -->
+                <div class="section-card gallery-section hidden" id="gallerySection">
+                    <div class="section-title">Галерея</div>
+                    <div class="gallery-grid" id="galleryGrid"></div>
+                </div>
+
+                <!-- Map Section -->
+                <div class="section-card map-section hidden" id="mapSection">
+                    <div class="section-title">Местоположение</div>
+                    <div class="map-placeholder" onclick="openMap()">
+                        <div class="map-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="map-text">Открыть на карте</div>
+                    </div>
+                </div>
+
+                <!-- Rating Section -->
+                <div class="section-card">
+                    <div class="rating-header">
+                        <div class="rating-title">Рейтинг</div>
+                        <div class="rating-count" id="ratingCount">(0 отзывов)</div>
+                    </div>
+                    <div id="ratingContent">
+                        <div class="no-reviews">Отзывов пока нет</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Profile Info -->
-        <div class="profile-info">
-            <div class="info-header">
-                <div class="name-location">
-                    <div class="profile-name" id="profileName">Ли Сергей</div>
-                    <div class="profile-location" id="profileLocation">Вся Корея</div>
-                </div>
-                <div class="action-buttons">
-                    <button class="action-btn" onclick="callPhone()" title="Позвонить">
-                        <i class="fas fa-phone"></i>
-                    </button>
-                    <button class="action-btn" onclick="openChat()" title="Написать">
-                        <i class="fas fa-comment"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Tags -->
-            <div class="tags-container" id="tagsContainer">
-                <div class="tag">Мобильная разработка</div>
-                <div class="tag">Веб-разработка</div>
-            </div>
-
-            <!-- Short Description -->
-            <div class="short-description" id="shortDescription">
-                Разработка мобильных и веб приложений любой сложности.
-            </div>
-
-            <!-- About Section -->
-            <div class="section about-section">
-                <div class="section-title">О себе</div>
-                <div class="about-text" id="aboutText">-</div>
-                <span class="collapse-btn" id="collapseBtn" onclick="toggleAbout()">свернуть</span>
-            </div>
-
-            <!-- Social Links -->
-            <div class="section">
-                <div class="section-title">Социальные сети</div>
-                <div class="social-links" id="socialLinks">
-                    <a href="#" class="social-card" id="instagramCard">
-                        <div class="social-icon-wrapper instagram">
-                            <i class="fa-brands fa-instagram" style="font-size: 28px; color: white;"></i>
-                        </div>
-                        <div class="social-info">
-                            <div class="social-name">Instagram</div>
-                            <div class="social-handle" id="instagramHandle">@username</div>
-                        </div>
-                    </a>
-
-                    <a href="#" class="social-card" id="telegramCard">
-                        <div class="social-icon-wrapper telegram">
-                            <i class="fa-brands fa-telegram" style="font-size: 28px; color: white;"></i>
-                        </div>
-                        <div class="social-info">
-                            <div class="social-name">Telegram</div>
-                            <div class="social-handle" id="telegramHandle">@username</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Gallery Section -->
-            <div class="section gallery-section hidden" id="gallerySection">
-                <div class="section-title">Галерея</div>
-                <div class="gallery-grid" id="galleryGrid"></div>
-            </div>
-
-            <!-- Map Section -->
-            <div class="section map-section hidden" id="mapSection">
-                <div class="section-title">Местоположение</div>
-                <div class="map-placeholder" onclick="openMap()">
-                    <div class="map-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div class="map-text">Открыть на карте</div>
-                </div>
-            </div>
-
-            <!-- Rating Section -->
-            <div class="rating-section">
-                <div class="rating-header">
-                    <div class="rating-title">Рейтинг</div>
-                    <div class="rating-count" id="ratingCount">(0 отзывов)</div>
-                </div>
-                <div id="ratingContent">
-                    <div class="no-reviews">Отзывов пока нет</div>
-                </div>
-            </div>
+        <!-- Floating Action Bar -->
+        <div class="floating-actions">
+            <button class="floating-btn" onclick="callPhone()" title="Позвонить">
+                <i class="fas fa-phone"></i>
+            </button>
+            <button class="floating-btn" onclick="openChat()" title="Написать">
+                <i class="fas fa-comment"></i>
+            </button>
         </div>
     </div>
 
@@ -1313,6 +1678,47 @@
             
             lastScroll = currentScroll;
         });
+
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) scale(1)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements after they're loaded
+        setTimeout(() => {
+            const elementsToAnimate = document.querySelectorAll('.section-card, .social-card, .gallery-item, .tag');
+            elementsToAnimate.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px) scale(0.95)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                observer.observe(el);
+            });
+        }, 500);
+
+        // Floating button pulse animation
+        setInterval(() => {
+            const floatingBtns = document.querySelectorAll('.floating-btn');
+            floatingBtns.forEach((btn, index) => {
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        btn.style.transform = 'scale(1)';
+                    }, 200);
+                }, index * 100);
+            });
+        }, 5000);
 
         loadContact();
     </script>
