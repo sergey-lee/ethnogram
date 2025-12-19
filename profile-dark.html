@@ -1246,14 +1246,14 @@
         </div>
 
         <!-- Floating Action Bar -->
-        <div class="floating-actions">
+        <!-- <div class="floating-actions">
             <button class="floating-btn" onclick="callPhone()" title="Позвонить">
                 <i class="fas fa-phone"></i>
             </button>
             <button class="floating-btn" onclick="openChat()" title="Написать">
                 <i class="fas fa-comment"></i>
             </button>
-        </div>
+        </div> -->
     </div>
 
     <!-- Lightbox -->
@@ -1474,6 +1474,9 @@
             if (data.avgRating && data.totalReviews > 0) {
                 renderRating(data.avgRating, data.totalReviews);
             }
+    if (data.phone !== null && data.phone !== "") {
+        document.getElementById("actionButtons").style.display = "flex";
+    }
         }
 
         function renderSocialLinks(data) {
