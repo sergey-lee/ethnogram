@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Inter, Arial, sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 16px 12px 48px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 26px;
+            margin: 16px 0 24px;
+        }
+
+        .faq {
+            background: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 16px 18px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #111827;
+        }
+
+        .faq-question:focus {
+            outline: none;
+        }
+
+        .faq-icon {
+            font-size: 18px;
+            transition: transform 0.25s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 18px;
+        }
+
+        .faq-item.active .faq-answer {
+            padding-bottom: 16px;
+        }
+
+        .faq-answer p,
+        .faq-answer li {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        .faq-answer p {
+            margin: 8px 0;
+        }
+
+        .faq-answer ul {
+            padding-left: 18px;
+            margin: 8px 0;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 32px;
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 22px;
+            }
+
+            .faq-question {
+                font-size: 15px;
+                padding: 14px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Часто задаваемые вопросы</h1>
+
+    <div class="faq">
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Как сделать профиль видимым для других пользователей?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>
+                    Чтобы ваш профиль отображался в приложении, заполните все обязательные поля:
+                    имя, фотографию, категорию, город и описание,
+                    а также включите опцию <b>«Публичный аккаунт»</b>.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Как подняться выше в списке сервисов?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>
+                    Позиция в списке зависит от активности и доверия пользователей.
+                    Чем больше лайков и отзывов вы получаете, тем выше ваш профиль.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Как сделать, чтобы бизнес отображался на карте?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>
+                    Для отображения бизнеса на карте необходимо оформить подписку <b>Plus</b>.
+                </p>
+                <p>
+                    Подробнее:
+                    <a href="https://ethnogram.alienminds.net/ethnogram-plus" target="_blank">
+                        ethnogram.plus
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Что такое гостевой режим?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p><b>Доступно:</b></p>
+                <ul>
+                    <li>новости и события</li>
+                    <li>просмотр списков сервисов</li>
+                </ul>
+                <p><b>Ограничения:</b></p>
+                <ul>
+                    <li>нельзя ставить лайки</li>
+                    <li>нельзя оставлять отзывы</li>
+                    <li>нельзя просматривать детали сервисов</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Как отредактировать профиль или бизнес-страницу?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>
+                    Перейдите в <b>«Профиль → Редактировать»</b>.
+                    Регулярное обновление описания и фото повышает доверие.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Как получать больше отзывов?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>
+                    Попросите клиента оставить отзыв сразу после оказания услуги.
+                    Профили с отзывами выбирают чаще.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Почему мой профиль временно не отображается?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <ul>
+                    <li>не заполнены обязательные поля</li>
+                    <li>выключен публичный аккаунт</li>
+                    <li>нарушены правила сервиса</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Что дает подписка Plus?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <ul>
+                    <li>метка бизнеса на карте</li>
+                    <li>приоритет в списках</li>
+                    <li>повышение доверия</li>
+                    <li>новые функции</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Можно ли использовать приложение бесплатно?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>
+                    Да, базовые функции бесплатны.
+                    Платные опции расширяют возможности продвижения.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Как связаться с поддержкой?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <ul>
+                    <li>Email: <a href="mailto:guagetru.bla@gmail.com">guagetru.bla@gmail.com</a></li>
+                    <li>Telegram: <a href="https://t.me/k0jihero" target="_blank">@k0jihero</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Безопасны ли мои данные?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>
+                    Мы используем современные меры защиты
+                    и не передаем данные третьим лицам без согласия.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        © Ethnogram
+    </footer>
+</div>
+
+<script>
+    const items = document.querySelectorAll('.faq-item');
+
+    items.forEach(item => {
+        const button = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+
+        button.addEventListener('click', () => {
+            const isOpen = item.classList.contains('active');
+
+            items.forEach(i => {
+                i.classList.remove('active');
+                i.querySelector('.faq-answer').style.maxHeight = null;
+            });
+
+            if (!isOpen) {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
