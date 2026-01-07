@@ -588,7 +588,7 @@
 
             <!-- About Section -->
             <div class="about-section">
-                <div class="section-title" id="aboutSection">О себе:</div>
+                <div class="section-title">О себе:</div>
                 <div class="about-text" id="aboutText">
 -
                 </div>
@@ -875,9 +875,6 @@ const categoriesMap = [
 
             // About
             console.log('About Info:', data.info);
-            if (data.isCompany) {
-                document.getElementById('aboutSection').textContent = 'Описание:';
-            }
             if (data.info) {
                 document.getElementById('aboutText').textContent = data.info || 'пусто';
             }
