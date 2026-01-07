@@ -838,17 +838,10 @@ const categoriesMap = [
 
             // Name
             const fullName = `${data.name || ''} ${data.surname || ''}`.trim();
-            if (data.isCompany) {
-                fullName = data.name;
-            } else {
-                  if (fullName) {
+            if (fullName) {
                 document.getElementById('profileName').textContent = fullName;
-            } else {
-                document.getElementById('profileName').textContent = data.name;
             }
 
-            }
-          
             // Location
             const cities = data.cities?.map(id => citiesMap[id] || `Город ${id}`).join(', ');
             if (cities) {
