@@ -47,7 +47,20 @@
             padding: 20px;
             text-align: center;
         }
-
+/* .app-banner {
+    /* position: fixed;       
+    top: 0;               
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+} */
         .banner-text {
             font-size: 14px;
             color: #333333;
@@ -575,7 +588,7 @@
 
             <!-- About Section -->
             <div class="about-section">
-                <div class="section-title">О себе:</div>
+                <div class="section-title" id="aboutSection">О себе:</div>
                 <div class="about-text" id="aboutText">
 -
                 </div>
@@ -825,10 +838,17 @@ const categoriesMap = [
 
             // Name
             const fullName = `${data.name || ''} ${data.surname || ''}`.trim();
-            if (fullName) {
+            if (data.isCompany) {
+                fullName = data.name;
+            } else {
+                  if (fullName) {
                 document.getElementById('profileName').textContent = fullName;
+            } else {
+                document.getElementById('profileName').textContent = data.name;
             }
 
+            }
+          
             // Location
             const cities = data.cities?.map(id => citiesMap[id] || `Город ${id}`).join(', ');
             if (cities) {
@@ -855,6 +875,9 @@ const categoriesMap = [
 
             // About
             console.log('About Info:', data.info);
+            if (data.isCompany) {
+                document.getElementById('aboutSection').textContent = 'Описание:';
+            }
             if (data.info) {
                 document.getElementById('aboutText').textContent = data.info || 'пусто';
             }
